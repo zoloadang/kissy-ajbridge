@@ -1,0 +1,8 @@
+1.动态配置swf的获取方式。
+2.默认采用动态式。
+3.静态获取swf，则需要动态注册一次JS入口。
+4.包装ajbridge的4个事件：
+	a. init 			即ajbridge的swf初始化。 
+	b. addCallback  	向js注册了一个方法。
+	c. addCallbacks 	向js批量注册了方法。
+	d. swfReady			ajbridge的swf准备完毕。

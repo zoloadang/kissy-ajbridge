@@ -7,3 +7,13 @@ AS do AS things (code), JS do JS things (code), only communicate with me (bridge
 AS and JS are doing their own things, only use bridge in communication.
 
 Actionscript and Javascript communication frame class
+
+封装了 AS 和 JS 通信的包
+是 KISSY 的独立子项目
+由早期的 AJBridge 迁移过来
+
+借鉴了以下库、包的特性创建而成：
+SWFOject		http://code.google.com/p/swfobject/
+Flashembed		http://flowplayer.org/tools/toolbox/flashembed.html
+YUI2.swf		http://github.com/yui/yui2/blob/master/src/swf/js/swf.js
+

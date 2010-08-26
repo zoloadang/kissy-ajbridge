@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title></title>
+	</head>
+	<body>
+		<h2>SWFStore test</h2>
+		<script src="../../../kissy/test/test.js"></script>
+		<script>KISSY.Test.Config.times = 1;</script>
+		
+		<script src="../../../ks-core.js"></script>
+		<script src="../../../json.js"></script>
+        <script src="../../../kissy/flash/flash-ua.js"> </script>
+        <script src="../../../kissy/flash/flash.js"> </script>
+        <script src="../../../kissy/flash/flash-embed.js"> </script>
+		
+		<script src="../ajbridge/ajbridge.js"></script>
+		
+		
+		<script src="ajb-store.js"></script>
+		
+		<div id="myFlashContent">
+			 <a href="http://www.adobe.com/go/getflashplayer"> 
+	         <img src="get_flash_player.gif" alt="Get Adobe Flash player" /> 
+	         </a> 
+		</div>
+		<br/>
+		<button type="button" onclick="length();">length</button>
+		<button type="button" onclick="setItem();">setItem</button>
+		<button type="button" onclick="setItemByCustom();">setItemByCustom</button>
+		<button type="button" onclick="getItem();">getItem</button>
+		<button type="button" onclick="getItemByCustom();">getItemByCustom</button>
+		<button type="button" onclick="key();">key</button>
+		<button type="button" onclick="keyByCustom();">keyByCustom</button>
+		<button type="button" onclick="removeItem();">removeItem</button>
+		<button type="button" onclick="removeItemByCustom();">removeItemByCustom</button>
+		<button type="button" onclick="cls();">clear</button>
+		<button type="button" onclick="getModificationDate();">getModificationDate</button>
+		<button type="button" onclick="hasAdequateDimensions();">hasAdequateDimensions</button>
+		<button type="button" onclick="displaySettings();">displaySettings</button>
+		<button type="button" onclick="getUseCompression();">getUseCompression</button>
+		<button type="button" onclick="getUseCompression();">getUseCompression</button>
+		<button type="button" onclick="getSize();">getSize</button>
+		<button type="button" onclick="setMinDiskSpace();">setMinDiskSpace</button>
+		
+		
+		<script>
+			var S = KISSY,
+				F = S.Flash,
+				A = S.AJBridge,
+				t,
+				AJB = S.ajb,
+				SWFStore = AJB.Store,
+				config ={
+					src:"swfstore.swf",
+					params:{
+						bgcolor:"#CCCCCC"
+					}
+				},
+				id="myFlashContent",
+				store = new SWFStore(id,config),
+				KEY = "sample2",
+				VAL = "hello world~",
+				cK,cV;
+			
+				function test_create(test){
+					store.on("init",function(ev){
+						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+					});
+					store.on("addCallback",function(ev){
+						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+					});
+					store.on("addCallbacks",function(ev){
+						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+					});
+					store.on("swfReady",function(ev){
+						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						S.log(store);
+					});
+					
+					store.on("initialize",function(ev){
+						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+					});
+					store.on("contentReady",function(ev){
+						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+					});
+					store.on("new",function(ev){
+						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+					});
+					store.on("storage",function(ev){
+						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+					});
+					store.on("status",function(ev){
+						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+					});
+					store.on("pending",function(ev){
+						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+					});
+					store.on("clear",function(ev){
+						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+					});
+					store.on("showSettings",function(ev){
+						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+					});
+					
+					store.on("error",function(ev){
+						test.echo("<p>"+	'id: ' + ev.id,
+									',type: ' + ev.type,
+									',info: ' + ev.info,
+									"</p>");
+						test.fail();
+						S.log(ev);
+					});
+					
+					
+					store.init();
+					t = test;
+				}
+				
+				
+				
+			
+			function length(){
+				t.echo(store.getLength());
+			}
+			
+			function getItem(){
+				t.echo(store.getItem(KEY));
+			}
+			
+			function setItem(){
+				store.setItem(KEY,VAL);
+				t.echo("setItem now");
+			}
+				
+			function key(){
+				t.echo("<p>"+store.key(0),"</p>");
+			}	
+			
+			function removeItem(){
+				store.removeItem(KEY);
+				t.echo("<p>"+"removeItem:"+KEY,"</p>");
+			}
+			
+			function cls(){
+				store.clear();
+				t.echo("<p>"+"clear:","</p>");
+			}
+			
+			function setItemByCustom(){
+				cK = prompt("input key:");
+				if(cK&&cK.length>0){
+					cV = prompt("input value:");
+					if(!cV||cV.length<1)cV = "null"	
+					store.setItem(cK,cV);
+					t.echo("setItemByCustom now");
+				}
+			}
+			
+			function getItemByCustom(){
+				cK = prompt("input key:");
+				if(cK&&cK.length>0){
+					t.echo(store.getItem(cK));
+				}
+			}
+			
+			function keyByCustom(){
+				var i = prompt("input index:");
+					t.echo("<p>"+store.key(i),"</p>");
+			}
+			
+			function removeItemByCustom(){
+				cK = prompt("input key:");
+				if(cK&&ck.length>0){
+					store.removeItem(KEY);
+					length();
+				}
+			}
+			
+			
+			function getModificationDate(){
+				t.echo("<p>ModificationDate:"+store.getModificationDate(),"</p>");
+			}
+			
+			function hasAdequateDimensions(){
+				t.echo("<p>hasAdequateDimensions:"+store.hasAdequateDimensions(),"</p>");
+			}
+			function displaySettings(){
+				if(store.hasAdequateDimensions){
+					store.displaySettings();
+				}else{
+					t.fail();
+				}
+			}
+			function getUseCompression(){
+				t.echo("<p>getUseCompression:"+store.getUseCompression(),"</p>");
+			}
+			function getSize(){
+				t.echo("<p>getSize:"+store.getSize(),"Bytes</p>");
+			}
+			function setMinDiskSpace(){
+				var size = prompt("input min disk space(B):");
+				if(!size || isNaN(size)) size = 1000;
+				t.echo("<p>setMinDiskSpace.Status:"+store.setMinDiskSpace(size),"Bytes</p>");
+			}
+				
+		</script>
+	</body>
+</html>
