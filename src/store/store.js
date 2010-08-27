@@ -1,7 +1,7 @@
 /**
  * @author kingfo  oicuicu@gmail.com
  */
-KISSY.AJBridge.add("store", function(A){
+AJBridge.add("store", function(A){
 	
 	var S = KISSY,
 		UA = S.UA;
@@ -55,12 +55,13 @@ KISSY.AJBridge.add("store", function(A){
 		]
 	);
 	
-	Store.version = "1.0.2";
+	Store.version = "1.0.4";
 	A.Store = Store;
 });
 
 /**
  * NOTES:
- * 2010/08/12		重构了代码，基于AJBridge 1.0.10
+ * 2010/08/12	重构了代码，基于AJBridge 1.0.10
+ * 2010/08/27	重构了代码，基于AJBridge 1.0.12
  * 
  */
