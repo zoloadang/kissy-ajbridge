@@ -6,19 +6,16 @@
 	</head>
 	<body>
 		<h2>SWFStore test</h2>
-		<script src="../../../kissy/test/test.js"></script>
+		<script src="../../../kissy/build/test/test.js"></script>
 		<script>KISSY.Test.Config.times = 1;</script>
 		
-		<script src="../../../ks-core.js"></script>
-		<script src="../../../json.js"></script>
-        <script src="../../../kissy/flash/flash-ua.js"> </script>
-        <script src="../../../kissy/flash/flash.js"> </script>
-        <script src="../../../kissy/flash/flash-embed.js"> </script>
+		<script src="../../../kissy/build/kissy.js"></script>
+		<script src="../../../kissy/build/flash/flash-pkg.js"></script>
 		
 		<script src="../ajbridge/ajbridge.js"></script>
 		
 		
-		<script src="ajb-store.js"></script>
+		<script src="store.js"></script>
 		
 		<div id="myFlashContent">
 			 <a href="http://www.adobe.com/go/getflashplayer"> 
@@ -50,8 +47,7 @@
 				F = S.Flash,
 				A = S.AJBridge,
 				t,
-				AJB = S.ajb,
-				SWFStore = AJB.Store,
+				SWFStore = A.Store,
 				config ={
 					src:"swfstore.swf",
 					params:{

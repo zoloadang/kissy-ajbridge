@@ -16,7 +16,7 @@ KISSY.add('ajbridge', function(S) {
      * @param {Object} config  基本配置同 S.Flash 的 config
      */
     function AJBridge(id, config) {
-        id = id.replace('#', '');
+        id = id.replace('#', '');			// 健壮性考虑。出于 KISSY 习惯采用  id选择器。
 
         var self = this,
             traget = '#' + id,            //	之所以要求使用 id，是因为当使用 ajbridge 时 程序员自己应该能确切知道自己在做什么。
@@ -83,55 +83,57 @@ KISSY.add('ajbridge', function(S) {
 
     }
 
+
+
+	/**
+	 * 静态方法群
+	 */
     S.mix(AJBridge, {
+		version:VERSION,
         instances: {},
-    /**
-     * 静态方法
-     * 处理来自 AJBridge 已定义的事件
-     * @param {Object} event
-     */
-    eventHandler: function(id, event) {
-        AJBridge.instances[id]._eventHandler(id, event);
-    }
+	    /**
+	     * 处理来自 AJBridge 已定义的事件
+	     * @param {Object} event
+	     */
+	    eventHandler: function(id, event) {
+	        AJBridge.instances[id]._eventHandler(id, event);
+	    },
+		/**
+	     * 批量注册 SWF 公开的方法
+	     * @param {Array} methods
+	     * @param {Class} C
+	     */
+	    augment : function (C, methods) {
+	        if (!S.isArray(methods))return;
+	        S.each(methods, function(methodName) {
+	            C.prototype[methodName] = function() {
+	                try {
+	                    return this.callSWF(methodName, S.makeArray(arguments));
+	                } catch(e) { // 当 swf 异常时，进一步捕获信息
+	                    this.fire('error', { message: e });
+	                }
+	            }
+	        });
+	    },
+		 /**
+	     * 注册 SWF 公开的方法
+	     * @param {String} methodName
+	     * @param {Class} C
+	     */
+	   addProto : function(C,methodName) {
+	        C.prototype[methodName] = function() {
+	            try {
+	                return this.callSWF(methodName, S.makeArray(arguments));
+	            } catch(e) { // 当 swf 异常时，进一步捕获信息
+	                this.fire('error', { message: e });
+	            }
+	        }
+	    }
     });
-
-
-    /**
-     * 批量注册 SWF 公开的方法
-     * @param {Array} methods
-     * @param {Class} C
-     */
-    AJBridge.augment = function (C, methods) {
-        if (!S.isArray(methods))return;
-        S.each(methods, function(methodName) {
-            C.prototype[methodName] = function() {
-                try {
-                    return this.callSWF(methodName, S.makeArray(arguments));
-                } catch(e) { // 当 swf 异常时，进一步捕获信息
-                    this.fire('error', { message: e });
-                }
-            }
-        });
-    };
-
-    /**
-     * 注册 SWF 公开的方法
-     * @param {String} methodName
-     * @param {Class} C
-     */
-    AJBridge.addProto = function(methodName, C) {
-        C.prototype[methodName] = function() {
-            try {
-                return this.callSWF(methodName, S.makeArray(arguments));
-            } catch(e) { // 当 swf 异常时，进一步捕获信息
-                this.fire('error', { message: e });
-            }
-        }
-    };
-
+	/**
+	 * 原型方法群
+	 */
     S.augment(AJBridge, S.EventTarget, {
-
-        version:VERSION,
 
         init:function() {
             var self = this;
@@ -141,7 +143,8 @@ KISSY.add('ajbridge', function(S) {
         _eventHandler: function(id, event) {
             var self = this,
                 type = event.type;
-            event.id = id;
+				
+            event.id = id;   //	弥补后期 id使用
             if (type === 'log') {
                 S.log(event.message);
             } else if (type) {
@@ -178,10 +181,12 @@ KISSY.add('ajbridge', function(S) {
     // 为静态方法动态注册
     // 注意，只有在 S.ready() 后进行 AJBridge注册才有效。
     AJBridge.addProto(AJBridge, 'activate');
-
-    S.app(AJBridge);
+	
+	S.mix(AJBridge, S.app('AJBridge'));
+   
+	
     S.AJBridge = AJBridge;
-
+	
 });
 
 /**
