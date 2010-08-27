@@ -1,7 +1,7 @@
 /**
  * @author kingfo  oicuicu@gmail.com
  */
-AJBridge.add("store", function(A){
+KISSY.AJBridge.add("store", function(A){
 	
 	var S = KISSY,
 		UA = S.UA;

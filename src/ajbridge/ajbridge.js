@@ -16,14 +16,14 @@ KISSY.add('ajbridge', function(S) {
      * @param {Object} config  基本配置同 S.Flash 的 config
      */
     function AJBridge(id, config) {
-        id = id.replace('#', '');			// 健壮性考虑。出于 KISSY 习惯采用  id选择器。
+        id = id.replace('#', '');			// 健壮性考虑。出于 KISSY 习惯采用  id 选择器。
 
         var self = this,
             traget = '#' + id,            //	之所以要求使用 id，是因为当使用 ajbridge 时 程序员自己应该能确切知道自己在做什么。
             callback = function(data) {
-                // 注意， status 大于 0都是可用的
+                // 注意， status 大于 0 都是可用的
                 if (data.status < 1) {
-                    self.fire('failed', {message:data});
+                    self.fire('failed', { message: data } );
                     return;
                 }
                 S.mix(self, data);
@@ -45,28 +45,15 @@ KISSY.add('ajbridge', function(S) {
 
         //	动态方式
         if (config.src) {
-            var params = {
-                // 1.强制打开 JS 访问授权 ，AJBridge的最基本要求
-                allowscriptaccess: ALWAY_ALLOW_SCRIPT_ACCESS,
-                flashvars: {
-                    jsEntry: EVENT_HANDLER,
-                    swfID: id
-                }
-            };
+            // 强制打开 JS 访问授权，AJBridge 的最基本要求
             config.params.allowscriptaccess = ALWAY_ALLOW_SCRIPT_ACCESS;
-
-            config.params.flashvars = config.params.flashvars || {};
-
-            //// AJBridge 最基本配置 
-            // 2.配置JS入口
-            config.params.flashvars.jsEntry = EVENT_HANDLER;
-            // 虽然Flash通过  ExternalInterface 获得 obejctId
-            // 但是依然存在兼容性问题,因此需要直接告诉。
-            // 3.传入对象自身HTML元素的id
-            config.params.flashvars.swfID = id;
-
-            config.params = config.params || {};
-
+            config.params.flashvars = S.merge(config.params.flashvars, {
+                // 配置 JS 入口
+                jsEntry: EVENT_HANDLER,
+                // 虽然Flash通过  ExternalInterface 获得 obejctId
+                // 但是依然存在兼容性问题,因此需要直接告诉
+                swfID: id
+            });
         }
 
         // 支持静态方式，但是要求以上三个步骤已静态写入
@@ -75,7 +62,7 @@ KISSY.add('ajbridge', function(S) {
 
         // 由于完全基于事件机制，因此需要通过监听之后进行初始化Flash
         // 异步的实现
-        self.args = [traget,config,callback];
+        self.args = [traget,config, callback];
 
         // 移动至	init		
         //		Flash.add(traget,config,callback);
@@ -181,10 +168,8 @@ KISSY.add('ajbridge', function(S) {
     // 为静态方法动态注册
     // 注意，只有在 S.ready() 后进行 AJBridge注册才有效。
     AJBridge.addProto(AJBridge, 'activate');
-	
-	S.mix(AJBridge, S.app('AJBridge'));
-   
-	
+
+	S.app(AJBridge);	
     S.AJBridge = AJBridge;
 	
 });
