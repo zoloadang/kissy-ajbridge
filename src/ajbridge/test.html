@@ -185,17 +185,8 @@
     }
     var tg;
     function test_static(test) {
-        var id = "myFlashContent3",
-                config = {
-                    attrs: {
-                        width: 400,
-                        height: 300
-                    },
-                    params:{
-                        bgcolor:"#C4C4C4"
-                    }
-                };
-        var a = new A(id, config);
+        var id = "myFlashContent3";
+        var a = new A(id);
         a.on("failed", function(ev) {
             test.fail();
             test.echo('failed：' + ev.message.status);

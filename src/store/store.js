@@ -4,6 +4,7 @@
 AJBridge.add("store", function(A){
 	
 	var S = KISSY,
+		F = S.Flash,
 		UA = S.UA;
 
 	/**
@@ -16,16 +17,25 @@ AJBridge.add("store", function(A){
 	function Store(id, config){
 		var flashvars = { },
 			useCompression,
-			baseOnBrowser;
+			baseOnBrowser,
+			k;
 			
-		config = config||{};
+		config = config || {};
 
 		// 1.Store 基本配置
 		useCompression = config.useCompression;					
 		baseOnBrowser = config.baseOnBrowser;
 		
-		if(baseOnBrowser){
-            flashvars.browser = UA.shell;
+//		if(baseOnBrowser){
+//            flashvars.browser = UA.shell;
+//		}
+		switch(baseOnBrowser){
+			case "core":
+				flashvars.browser = UA.core;
+			break;
+			case "shell":
+				flashvars.browser = UA.shell;
+			break;
 		}
 
 		//// Boolean.toString()

@@ -17,6 +17,8 @@ KISSY.add('ajbridge', function(S) {
      */
     function AJBridge(id, config) {
         id = id.replace('#', '');			// 健壮性考虑。出于 KISSY 习惯采用  id 选择器。
+		// 标准化参数关键字
+        config = Flash._normalize(config || {});
 
         var self = this,
             traget = '#' + id,            //	之所以要求使用 id，是因为当使用 ajbridge 时 程序员自己应该能确切知道自己在做什么。
@@ -39,9 +41,7 @@ KISSY.add('ajbridge', function(S) {
         // 注册应用实例
         AJBridge.instances[id] = self;
 
-        // 标准化参数关键字
-        config = Flash._normalize(config || {});
-
+        
         //	动态方式
         if (config.src) {
             // 强制打开 JS 访问授权，AJBridge 的最基本要求
