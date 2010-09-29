@@ -147,9 +147,9 @@ KISSY.add('ajbridge', function(S) {
             }
                 // some version flash function is odd in ie: property or method not supported by object
             catch(e) {
-                var params = '';
+                var params = "";
                 if (args.length !== 0) {
-                    params = '\'' + args.join('','') + '\'';
+                    params = "'" + args.join("','") + "'";
                 }
                 //avoid eval for compressiong
                 return (new Function('self', 'return self.swf.' + func + '(' + params + ');'))(self);
