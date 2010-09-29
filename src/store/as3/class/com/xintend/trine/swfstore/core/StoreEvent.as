@@ -19,6 +19,7 @@ package com.xintend.trine.swfstore.core {
 		
 		public static const ERROR: String = "error";
 		
+		public static const RELOAD: String = "reload";
 		
 		public function get key():String { return _key; }
 		

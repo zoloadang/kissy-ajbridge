@@ -37,7 +37,8 @@ package com.xintend.trine.swfstore.core {
 			
 			storageName = "DataStore_" + _browser;
 			
-			dispatchEvent(new StoreEvent(StoreEvent.INITIALIZE,CLASS_NAME));
+			dispatchEvent(new StoreEvent(StoreEvent.INITIALIZE, CLASS_NAME));
+			
 		}
 		
 		/**
@@ -218,6 +219,7 @@ package com.xintend.trine.swfstore.core {
 		protected function getShareObject(): SharedObject {
 			var so:SharedObject = SharedObject.getLocal(storageName);
 			so.addEventListener(NetStatusEvent.NET_STATUS, onNetStatus);
+			dispatchEvent(new StoreEvent(StoreEvent.RELOAD,{isSuccess:so.hasOwnProperty("data")}));
 			return so;
 		}
 		/**

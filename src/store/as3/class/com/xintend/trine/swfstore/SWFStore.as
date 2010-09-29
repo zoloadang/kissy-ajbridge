@@ -39,6 +39,8 @@ package com.xintend.trine.swfstore {
 			store.addEventListener(StoreEvent.PENDING, onStoreEvent);
 			store.addEventListener(StoreEvent.SHOW_SETTINGS, onStoreEvent);
 			store.addEventListener(StoreEvent.ERROR, onStoreEvent);
+			store.addEventListener(StoreEvent.RELOAD, onStoreEvent);
+			
 			store.addEventListener(NetStatusEvent.NET_STATUS, onNetStatus);
 			
 			var callbacks: Object = {

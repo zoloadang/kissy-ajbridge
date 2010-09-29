@@ -96,6 +96,9 @@
 					store.on("pending",function(ev){
 						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
 					});
+					store.on("reload",function(ev){
+						test.echo("<p>"+'id: ' + ev.id+',type: ' + ev.type +", hasData: "+ev.info.isSuccess+"</p>");
+					});
 					store.on("clear",function(ev){
 						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
 					});

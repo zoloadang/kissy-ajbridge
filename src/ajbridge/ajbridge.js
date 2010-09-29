@@ -83,7 +83,10 @@ KISSY.add('ajbridge', function(S) {
 	     * @param {Object} event		swf传出的事件
 	     */
 	    eventHandler: function(id, event) {
-	        AJBridge.instances[id]._eventHandler(id, event);
+			var instance = AJBridge.instances[id];
+			if(instance){
+				instance._eventHandler(id, event);  
+			}        
 	    },
 		/**
 	     * 批量注册 SWF 公开的方法

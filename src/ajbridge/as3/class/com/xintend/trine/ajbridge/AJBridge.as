@@ -36,7 +36,7 @@ package com.xintend.trine.ajbridge {
 			try {
 				swfID = flashvars[SWF_ID_KEY] || ExternalInterface.objectID || "mySWF";
 			}catch (e: Error) {
-				FlashConnect.atrace("com.xintend.trine.ajbridge",e,e.message,e.name,e.errorID);
+				FlashConnect.atrace("com.xintend.trine.ajbridge::init",e,e.message,e.name,e.errorID);
 			}
 			
 			sendEvent({type:"init"});
@@ -52,10 +52,10 @@ package com.xintend.trine.ajbridge {
 					ExternalInterface.addCallback(name, func);
 					sendEvent({type:"addCallback"});
 				}else {
-					FlashConnect.atrace("com.xintend.trine.ajbridge.addCallback","ExternalInterface:disable");
+					FlashConnect.atrace("com.xintend.trine.ajbridge::addCallback","ExternalInterface:disable");
 				}
 			}catch (e: Error) {
-				FlashConnect.atrace("com.xintend.trine.ajbridge",e,e.message,e.name,e.errorID);
+				FlashConnect.atrace("com.xintend.trine.ajbridge::addCallback",e,e.message,e.name,e.errorID);
 			}
 			
 		}
@@ -71,10 +71,10 @@ package com.xintend.trine.ajbridge {
 					}
 					sendEvent({type:"addCallbacks"});
 				}else {
-					FlashConnect.atrace("com.xintend.trine.ajbridge.addCallbacks","ExternalInterface:disable");
+					FlashConnect.atrace("com.xintend.trine.ajbridge::addCallbacks","ExternalInterface:disable");
 				}
 			}catch (e: Error) {
-				FlashConnect.atrace("com.xintend.trine.ajbridge",e,e.message,e.name,e.errorID);
+				FlashConnect.atrace("com.xintend.trine.ajbridge::addCallbacks",e,e.message,e.name,e.errorID);
 			}
 		}
 		
@@ -99,18 +99,24 @@ package com.xintend.trine.ajbridge {
 					ExternalInterface.call(jsEntry,swfID,evt);
 				}
 			}catch (e: Error) {
-				FlashConnect.atrace("com.xintend.trine.ajbridge",e,e.message,e.name,e.errorID);
+				FlashConnect.atrace("com.xintend.trine.ajbridge::sendEvent",e,e.message,e.name,e.errorID,evt);
 			}
+		}
+		static public function log(...args): void {
+			sendEvent( { type: 'log', data: args } );
+		}
+		
+		static private function activate(config: Object = null): void {
+			if (config) {
+				jsEntry = config.jsEntry || jsEntry;
+				swfID = config.swfID || swfID;
+			}
+			ready();
 		}
 		
 		
-		static private function activate(config: Object = null): void {
-				if (config) {
-					jsEntry = config.jsEntry || jsEntry;
-					swfID = config.swfID || swfID;
-				}
-				ready();
-			} 
+		
+			
 		
 		
 		private static const JS_ENTRY_KEY: String = "jsEntry";
