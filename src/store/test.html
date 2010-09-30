@@ -64,6 +64,10 @@
 				cK,cV;
 			
 				function test_create(test){
+					store.on("failed", function(ev) {
+			            test.fail();
+			            test.echo('failed：' + ev.message.status);
+			        });
 					store.on("init",function(ev){
 						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
 					});
