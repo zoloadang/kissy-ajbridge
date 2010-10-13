@@ -189,77 +189,71 @@ AJBridge = KISSY.AJBridge
 /**
  * @author kingfo  oicuicu@gmail.com
  */
-AJBridge.add("store", function(A){
+AJBridge.add("uploader", function(A){
 	
 	var S = KISSY,
 		F = S.Flash,
-		UA = S.UA;
+		UA = S.UA,
+		DEFAULT_CONFIG_KEY = [
+			"ds",
+			"dsp",
+			"dsr",
+			"btn",
+			"hand"
+		];
 
 	/**
 	 * 本地存储类
 	 * @param {String} id									需要注册的SWF应用ID。 
 	 * @param {Object} config								配置项
-	 * @param {Boolean} config.useCompression					配置项中的压缩标记。默认true，表示存储数据采用压缩。
-	 * @param {Boolean} config.baseOnBrowser					配置项中的浏览器专署标记。默认为 false
+	 * @param {String} config.ds							default server 的缩写。
+	 * @param {String} config.dsp							default server parameters 的缩写。
+	 * @param {Boolean} config.dsr							default server response 的缩写。
+	 * @param {Boolean} config.btn							启用按钮模式，默认 false。
+	 * @param {Boolean} config.hand							显示手型，默认 false。
 	 */
-	function Store(id, config){
+	function Uploader(id, config){
 		var flashvars = { },
-			useCompression,
-			baseOnBrowser,
-			k;
+			params,
+			k,i,n = DEFAULT_CONFIG_KEY.length;
 			
 		config = config || {};
+		params = config.params || {};
 
-		// 1.Store 基本配置
-		useCompression = config.useCompression;					
-		baseOnBrowser = config.baseOnBrowser;
-		
-//		if(baseOnBrowser){
-//            flashvars.browser = UA.shell;
-//		}
-		switch(baseOnBrowser){
-			case "core":
-				flashvars.browser = UA.core;
-			break;
-			case "shell":
-				flashvars.browser = UA.shell;
-			break;
+		for ( i=0;i < n;i++){
+			k = DEFAULT_CONFIG_KEY[i];
+			if(k in config)flashvars[k] = config[k];
 		}
-
-		//// Boolean.toString()
-		flashvars.useCompression = (useCompression !== undefined ? useCompression : true) + '';
 		
 		config.params.flashvars = S.merge(config.params.flashvars, flashvars);
 
-		Store.superclass.constructor.call(this, id,config);
+		Uploader.superclass.constructor.call(this, id,config);
 	}
 	
-	S.extend(Store, A);
+	S.extend(Uploader, A);
 
-	A.augment(Store,
+	A.augment(Uploader,
 		[
-			"getItem",
-			"setItem",
-			"removeItem",
-			"getLength",
-			"key",
-			"clear",
-			"getModificationDate",
-			"hasAdequateDimensions",
-			"displaySettings",
-			"getUseCompression",
-			"getSize",
-			"setMinDiskSpace"
+			"setFileFilters",
+			"filter",
+			"setAllowMultipleFiles",
+			"multifile",
+			"browse",
+			"upload",
+			"uploadAll",
+			"cancel",
+			"getFile",
+			"removeFile",
+			"lock",
+			"unlock",
+			"setBtnMode",
+			"useHand",
+			"clear"
 		]
 	);
 	
-	Store.version = "1.0.4";
-	A.Store = Store;
+	Uploader.version = "1.0.0";
+	A.Uploader = Uploader;
 });
 
-/**
- * NOTES:
- * 2010/08/12	重构了代码，基于AJBridge 1.0.10
- * 2010/08/27	重构了代码，基于AJBridge 1.0.12
- * 
- */
+

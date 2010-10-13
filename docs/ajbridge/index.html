@@ -257,6 +257,23 @@ a.init();
 </code></pre>												
                     </div>
                 </div>
+				<div class="member method">
+                    <h4>
+                        <a name="method_getReady">getReady</a>
+                        <code>String <em>getReady</em>()</code>
+                    </h4>
+					<div class="detail">
+                        <p>校验 AJBridge 是否可用</p>
+						<p class="tips">返回值始终固定为  "ready"。</p>
+						<dl class="parameters">
+                            <dt>Returns:</dt>
+							<dd>
+                                <code class="param-type">&lt;String&gt;</code>
+                               	恒为 "ready"
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
             </div>
 			
 			<div class="section" id="events">
@@ -346,7 +363,11 @@ a.init();
                     </div>
 				</div>
 			</div>
-           
+            <div class="section notes">
+                <p>
+                    	示例详细：<a href="../../src/ajbridge/test.html">ajbridge/test.html</a>
+                </p>
+            </div>
         </div>
     </div>
     <div class="col-sub">
@@ -374,6 +395,7 @@ a.init();
                     <li><a href="#method_init">init</a></li>
                     <li><a href="#method_callSWF">callSWF</a></li>
                     <li><a href="#method_activate">activate</a></li>
+                    <li><a href="#method_getReady">getReady</a></li>
                 </ul>
 				<h3>Events</h3>
 				<ul>

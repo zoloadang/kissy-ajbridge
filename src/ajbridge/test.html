@@ -78,19 +78,21 @@
         });
         a.on("init", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.on("addCallback", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.on("addCallbacks", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.on("swfReady", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
+			if(a.getReady() != "ready")test.fail();
+			 test.echo("is SWF Ready:" + a.getReady());
         });
         a.init();
     }
@@ -129,19 +131,19 @@
         });
         a.on("init", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.on("addCallback", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.on("addCallbacks", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.on("swfReady", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.init();
 
@@ -167,19 +169,19 @@
         });
         a.on("init", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.on("addCallback", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.on("addCallbacks", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.on("swfReady", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.init();
     }
@@ -197,19 +199,19 @@
         });
         a.on("init", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.on("addCallback", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.on("addCallbacks", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.on("swfReady", function(ev) {
             if (ev.id != id)test.fail();
-            test.echo('id: ' + ev.id, ',type: ' + ev.type, "<br/>");
+            test.echo('id: ' + ev.id, ',type: ' + ev.type+"<br/>");
         });
         a.init();
 

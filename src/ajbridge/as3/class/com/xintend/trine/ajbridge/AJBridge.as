@@ -42,7 +42,12 @@ package com.xintend.trine.ajbridge {
 			sendEvent({type:"init"});
 			
 			
-			addCallback("activate",activate);
+			addCallbacks( { 
+							activate: activate,
+							getReady:function ():String { return isReady; }
+							} );
+			//addCallback("activate",activate);
+			//addCallback("getReady", function ():String { return isReady; } );
 		}
 		
 		
@@ -118,6 +123,7 @@ package com.xintend.trine.ajbridge {
 		
 			
 		
+		private static var isReady: String = "ready";
 		
 		private static const JS_ENTRY_KEY: String = "jsEntry";
 		private static const SWF_ID_KEY: String = "swfID";

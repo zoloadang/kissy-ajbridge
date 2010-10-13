@@ -159,7 +159,7 @@ KISSY.add('ajbridge', function(S) {
 
     // 为静态方法动态注册
     // 注意，只有在 S.ready() 后进行 AJBridge注册才有效。
-    AJBridge.augment(AJBridge, 'activate');
+    AJBridge.augment(AJBridge, ['activate','getReady']);
 
 	S.app(AJBridge);
 	// 注册到Kissy 中 ，冗余式	

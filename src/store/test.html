@@ -69,49 +69,49 @@
 			            test.echo('failed：' + ev.message.status);
 			        });
 					store.on("init",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					store.on("addCallback",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					store.on("addCallbacks",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					store.on("swfReady",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 						S.log(store);
 					});
 					
 					store.on("initialize",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					store.on("contentReady",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					store.on("new",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					store.on("storage",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					store.on("status",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					store.on("pending",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					store.on("reload",function(ev){
-						test.echo("<p>"+'id: ' + ev.id+',type: ' + ev.type +", hasData: "+ev.info.isSuccess+"</p>");
+						test.echo('id: ' + ev.id+',type: ' + ev.type +", hasData: "+ev.info.isSuccess);
 					});
 					store.on("clear",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					store.on("showSettings",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					
 					store.on("error",function(ev){
-						test.echo("<p>"+	'id: ' + ev.id,
+						test.echo(	'id: ' + ev.id,
 									',type: ' + ev.type,
 									',info: ' + ev.info,
 									"</p>");
@@ -141,17 +141,17 @@
 			}
 				
 			function key(){
-				t.echo("<p>"+store.key(0),"</p>");
+				t.echo(store.key(0)+"<br/>");
 			}	
 			
 			function removeItem(){
 				store.removeItem(KEY);
-				t.echo("<p>"+"removeItem:"+KEY,"</p>");
+				t.echo("removeItem:"+KEY+"<br/>");
 			}
 			
 			function cls(){
 				store.clear();
-				t.echo("<p>"+"clear:","</p>");
+				t.echo("clear:"+"<br/>");
 			}
 			
 			function setItemByCustom(){
@@ -173,7 +173,7 @@
 			
 			function keyByCustom(){
 				var i = prompt("input index:");
-					t.echo("<p>"+store.key(i),"</p>");
+					t.echo(store.key(i)+"<br/>");
 			}
 			
 			function removeItemByCustom(){
@@ -186,11 +186,11 @@
 			
 			
 			function getModificationDate(){
-				t.echo("<p>ModificationDate:"+store.getModificationDate(),"</p>");
+				t.echo("ModificationDate:"+store.getModificationDate()+"<br/>");
 			}
 			
 			function hasAdequateDimensions(){
-				t.echo("<p>hasAdequateDimensions:"+store.hasAdequateDimensions(),"</p>");
+				t.echo("hasAdequateDimensions:"+store.hasAdequateDimensions()+"<br/>");
 			}
 			function displaySettings(){
 				if(store.hasAdequateDimensions){
@@ -200,15 +200,15 @@
 				}
 			}
 			function getUseCompression(){
-				t.echo("<p>getUseCompression:"+store.getUseCompression(),"</p>");
+				t.echo("getUseCompression:"+store.getUseCompression()+"<br/>");
 			}
 			function getSize(){
-				t.echo("<p>getSize:"+store.getSize(),"Bytes</p>");
+				t.echo("getSize:"+store.getSize(),"Bytes</p>");
 			}
 			function setMinDiskSpace(){
 				var size = prompt("input min disk space(B):");
 				if(!size || isNaN(size)) size = 1000;
-				t.echo("<p>setMinDiskSpace.Status:"+store.setMinDiskSpace(size),"Bytes</p>");
+				t.echo("setMinDiskSpace.Status:"+store.setMinDiskSpace(size),"Bytes</p>");
 			}
 				
 		</script>

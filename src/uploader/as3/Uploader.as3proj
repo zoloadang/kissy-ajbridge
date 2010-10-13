@@ -15,7 +15,7 @@
   <classpaths>
     <class path="src" />
     <class path="class" />
-    <class path="..\..\..\kissy-ajbridge\src\ajbridge\as3\class" />
+    <class path="..\..\ajbridge\as3\class" />
   </classpaths>
   <!-- Build options -->
   <build>

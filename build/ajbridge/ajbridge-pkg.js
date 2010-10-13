@@ -1,7 +1,7 @@
 /*
 Copyright 2010, KISSY UI Library v1.1.3
 MIT Licensed
-build time: Sep 9 18:11
+build time: Oct 13 13:21
 */
 /**
  * AJBridge Class
@@ -88,7 +88,10 @@ KISSY.add('ajbridge', function(S) {
 	     * @param {Object} event		swf传出的事件
 	     */
 	    eventHandler: function(id, event) {
-	        AJBridge.instances[id]._eventHandler(id, event);
+			var instance = AJBridge.instances[id];
+			if(instance){
+				instance._eventHandler(id, event);  
+			}        
 	    },
 		/**
 	     * 批量注册 SWF 公开的方法
@@ -149,9 +152,9 @@ KISSY.add('ajbridge', function(S) {
             }
                 // some version flash function is odd in ie: property or method not supported by object
             catch(e) {
-                var params = '';
+                var params = "";
                 if (args.length !== 0) {
-                    params = '\'' + args.join('','') + '\'';
+                    params = "'" + args.join("','") + "'";
                 }
                 //avoid eval for compressiong
                 return (new Function('self', 'return self.swf.' + func + '(' + params + ');'))(self);
@@ -161,7 +164,7 @@ KISSY.add('ajbridge', function(S) {
 
     // 为静态方法动态注册
     // 注意，只有在 S.ready() 后进行 AJBridge注册才有效。
-    AJBridge.augment(AJBridge, 'activate');
+    AJBridge.augment(AJBridge, ['activate','getReady']);
 
 	S.app(AJBridge);
 	// 注册到Kissy 中 ，冗余式	

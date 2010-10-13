@@ -6,13 +6,14 @@
 	</head>
 	<body>
 		<h2>Uploader test</h2>
-		<script src="../../kissy/build/test/test.js"></script>
+		<script src="../../../kissy/build/test/test.js"></script>
 		<script>KISSY.Test.Config.times = 1;</script>
 		
-		<script src="../../kissy/build/kissy.js"></script>
-		<script src="../../kissy/build/flash/flash-pkg.js"></script>
+		<script src="../../../kissy/build/kissy.js"></script>
+		<script src="../../../kissy/build/flash/flash-pkg.js"></script>
 		
-		<script src="../../kissy-ajbridge/src/ajbridge/ajbridge.js"></script>
+		
+		<script src="../ajbridge/ajbridge.js"></script>
 		
 		
 		<script src="uploader.js"></script>
@@ -79,16 +80,16 @@
 					// 1.添加常规 AJBridge 监听
 					// see  http://kissyteam.github.com/kissy-ajbridge/docs/ajbridge/index.html#events 
 					uploader.on("init",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					uploader.on("addCallback",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					uploader.on("addCallbacks",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					uploader.on("swfReady",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 						S.log(uploader);
 					});
 					
@@ -96,74 +97,74 @@
 					
 					uploader.on("contentReady",function(ev){
 						// flash 完成代码初始化
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					uploader.on("fileSelect",function(ev){
 						// flash 选择了文件
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type +", fileList:" + S.JSON.stringify(ev.fileList) + "</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type +", fileList:" + S.JSON.stringify(ev.fileList) + "<br/>");
 						files=ev.fileList;
 					});
 					uploader.on("browseCancel",function(ev){
 						// flash 取消选择文件
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type+", event:" + S.JSON.stringify(ev) +"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+", event:" + S.JSON.stringify(ev) +"<br/>");
 					});
 					uploader.on("uploadLock",function(ev){
 						// 上传组件已上锁
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					uploader.on("uploadUnlock",function(ev){
 						// 上传组件已解锁
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					uploader.on("uploadClear",function(ev){
 						// 清空
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					uploader.on("uploadStart",function(ev){
 						// 上传开始
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					uploader.on("uploadProgress",function(ev){
 						// 上传进行中
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type+", event:" + S.JSON.stringify(ev) +"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+", event:" + S.JSON.stringify(ev) +"<br/>");
 					});
 					uploader.on("uploadComplete",function(ev){
 						// 上传完成
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					}); 
 					uploader.on("uploadCompleteData",function(ev){
 						// 上传成功 并返回数据
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type+", event:" + S.JSON.stringify(ev) +"</p>");
-						test.echo("<p>"+ encodeURI(ev.data)+"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+", event:" + S.JSON.stringify(ev) +"<br/>");
+						test.echo( encodeURI(ev.data)+"<br/>");
 					});
 					uploader.on("listComplete",function(ev){
 						// 所有文件上传成功
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					uploader.on("uploadError",function(ev){
 						// 其他上传组件可能产生的错误
 						test.fail();
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type+", event:" + S.JSON.stringify(ev) +"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+", event:" + S.JSON.stringify(ev) +"<br/>");
 					});
 					
 					// 3.添加鼠标事件 监听
 					uploader.on("mouseOver",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type /*+ ", event:" + S.JSON.stringify(ev)*/ +"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type /*+ ", event:" + S.JSON.stringify(ev)*/ +"<br/>");
 					});
 					uploader.on("mouseDown",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					uploader.on("mouseUp",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					uploader.on("mouseOut",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					uploader.on("click",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					uploader.on("doubleClick",function(ev){
-						test.echo("<p>"+'id: ' + ev.id,',type: ' + ev.type,"</p>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
 					// 4.初始化
 					uploader.init();
@@ -172,48 +173,48 @@
 			
 			function browse(){
 				// 请注意 此处的  browse 并不是 开始浏览文件 ,而是做相关浏览配置
-				T.echo("<p>"+'browse success: ' + uploader.browse() + "</p>");
+				T.echo('browse success: ' + uploader.browse() + "<br/>");
 			}
 			function browseMedia(){
 				// 请注意 此处的  browse 并不是 开始浏览文件 ,而是做相关浏览配置
-				T.echo("<p>"+'browse success: ' + uploader.browse(false,[{desc:"PNG,GIF",ext:"*.png;*.gif"},{desc:"SWF",ext:"*.swf"}]) + "</p>");
+				T.echo('browse success: ' + uploader.browse(false,[{desc:"PNG,GIF",ext:"*.png;*.gif"},{desc:"SWF",ext:"*.swf"}]) + "<br/>");
 			}
 			function upload(){
 				//TODO: 
 				// 在初始化的 swf 参数中已定义好 服务器 url 和 服务器 url 参数
 				
-				T.echo("<p>"+'upload by config: ' + uploader.uploadAll() + "</p>");
+				T.echo('upload by config: ' + uploader.uploadAll() );
 			}
 			function upload2(){
 				//TODO:
 				// 重定义上传路径
-				T.echo("<p>"+'upload hasResponse: ' + 
+				T.echo('upload hasResponse: ' + 
 				uploader.uploadAll("http://127.0.0.1:8080/upload.php","POST",{
 						username:"user",
 						password:"1297ew9jd23888s834u3j2u38"
 				},true)
-				+ "</p>");
+				+ "<br/>");
 			}
 			function upload3(){
 				//TODO:
 				// 重定义上传路径
-				T.echo("<p>"+'upload nonResponse: ' + 
+				T.echo('upload nonResponse: ' + 
 				uploader.uploadAll("http://127.0.0.1:8080/upload.php","POST",{
 						username:"user",
 						password:"1297ew9jd23888s834u3j2u38"
 				},false)
-				+ "</p>");
+				+ "<br/>");
 			}
 			function cancel(){
 				uploader.cancel(files[0].id);
 			}
 			function getFile(){
 				//TODO:
-				T.echo("<p>"+'getFile: ' + uploader.getFile(files[0].id) + "</p>");
+				T.echo('getFile: ' + uploader.getFile(files[0].id) + "<br/>");
 			}
 			function removeFile(){
 				//TODO:
-				T.echo("<p>"+'getFile: ' + uploader.removeFile(files[0].id) + "</p>");
+				T.echo('getFile: ' + uploader.removeFile(files[0].id) + "<br/>");
 			}
 			function lock(){
 				uploader.lock();
