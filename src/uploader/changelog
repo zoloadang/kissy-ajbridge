@@ -1,0 +1,15 @@
+2010-10-23  从 Sandbox 转移至 KISSY-AJBridge中
+			将 uploadCannel 更名为 名称更确切的 browseCancel 。  
+2010-09-26	考虑到 KISSY 与 YUI 过渡 因此 uploader 将 API 都与 YUI 类同
+			原 upload 是 所有文件上传 转为 单个文件上传，因此原 upload 方法相应的更名为  uploadAll。
+			增加了 setAllowMultipleFiles 动态配置 是否使用多文件选择,当然这个方法太过难记忆，您也可以使用 multifile 来达到同样的目的。
+			增加了 setFileFilters 动态配置文件过滤器 ，当然，和上面一样，有个别名叫做 filter。
+			不过，如果您习惯使用  browse 动态配置是否使用多文件配置和 文件过滤器那最好不过了。
+			另外事件中舍弃了 id 使用了 file 或 fileList 属性来追溯源对象
+			事件类型具有较大的改动，主要是为了照顾 YUI 的同学们，谁让 Kissy 的成员那么喜欢 YUI呢 :)
+			具体呢可以 diff下之前的版本咯。
+			最好感谢上帝，uploader 还在 sandbox 中。
+2010-09-21	增加了清空所有上传文件API clear() 
+2010-09-20	修复了 COMPLETE 和 UPLOADE_COMPLETE_DATA 事件冲突。 	
+2010-09-09	版本号0.9
+			重构了as3代码
