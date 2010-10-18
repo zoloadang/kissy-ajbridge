@@ -2,26 +2,25 @@
  * AJBridge Class
  * @author kingfo oicuicu@gmail.com
  */
-
 KISSY.add('ajbridge', function(S) {
 
     var Flash = S.Flash,
         VERSION = '1.0.12',
-        ALWAY_ALLOW_SCRIPT_ACCESS = 'always',
         EVENT_HANDLER = 'KISSY.AJBridge.eventHandler'; // Flash 事件抛出接受通道
 
     /**
      * AJBridge
-     * @param {String} id      注册的应用id, 需要保持和SWF所在的HTML元素ID相同
+     * @param {String} id      注册的应用 id, 需要保持和 SWF 所在的 HTML 元素 ID 相同
      * @param {Object} config  基本配置同 S.Flash 的 config
      */
     function AJBridge(id, config) {
-        id = id.replace('#', '');			// 健壮性考虑。出于 KISSY 习惯采用  id 选择器。
+        id = id.replace('#', ''); // 健壮性考虑。出于 KISSY 习惯采用 id 选择器
+        
 		// 标准化参数关键字
-        config = Flash._normalize(config || {});
+        config = Flash._normalize(config);
 
         var self = this,
-            traget = '#' + id,            //	之所以要求使用 id，是因为当使用 ajbridge 时 程序员自己应该能确切知道自己在做什么。
+            traget = '#' + id,            // 之所以要求使用 id，是因为当使用 ajbridge 时，程序员自己应该能确切知道自己在做什么
             callback = function(data) {
                 if (data.status < 1) {
                     self.fire('failed', { message: data } );
@@ -40,12 +39,11 @@ KISSY.add('ajbridge', function(S) {
 
         // 注册应用实例
         AJBridge.instances[id] = self;
-
         
         //	动态方式
         if (config.src) {
             // 强制打开 JS 访问授权，AJBridge 的最基本要求
-            config.params.allowscriptaccess = ALWAY_ALLOW_SCRIPT_ACCESS;
+            config.params.allowscriptaccess = 'always';
             config.params.flashvars = S.merge(config.params.flashvars, {
                 // 配置 JS 入口
                 jsEntry: EVENT_HANDLER,
@@ -58,26 +56,21 @@ KISSY.add('ajbridge', function(S) {
         // 支持静态方式，但是要求以上三个步骤已静态写入
         // 可以参考 test.html
 
-
         // 由于完全基于事件机制，因此需要通过监听之后进行初始化Flash
         // 异步的实现
         self.args = [traget,config, callback];
-
-        // 移动至	init		
-        //		Flash.add(traget,config,callback);
-
-
     }
-
-
 
 	/**
 	 * 静态方法群
 	 */
     S.mix(AJBridge, {
-		version:VERSION,
-        instances: {},
-	    /**
+
+		version: VERSION,
+
+        instances: { },
+
+        /**
 	     * 处理来自 AJBridge 已定义的事件
 	     * @param {String} id			swf传出的自身ID
 	     * @param {Object} event		swf传出的事件
@@ -88,12 +81,13 @@ KISSY.add('ajbridge', function(S) {
 				instance._eventHandler(id, event);  
 			}        
 	    },
+
 		/**
 	     * 批量注册 SWF 公开的方法
 	     * @param {Class} C
 	     * @param {String|Array} methods
 	     */
-	    augment : function (C, methods) {
+	    augment: function (C, methods) {
 			if(S.isString(methods)){
 				methods = [methods];
 			}
@@ -109,9 +103,7 @@ KISSY.add('ajbridge', function(S) {
 	        });
 	    }
     });
-	/**
-	 * 原型方法群
-	 */
+
     S.augment(AJBridge, S.EventTarget, {
 
         init:function() {
@@ -159,16 +151,10 @@ KISSY.add('ajbridge', function(S) {
 
     // 为静态方法动态注册
     // 注意，只有在 S.ready() 后进行 AJBridge注册才有效。
-    AJBridge.augment(AJBridge, ['activate','getReady']);
+    AJBridge.augment(AJBridge, ['activate', 'getReady']);
 
-	S.app(AJBridge);
-	// 注册到Kissy 中 ，冗余式	
-    S.AJBridge = AJBridge;
-	
+    window.AJBridge = S.AJBridge = S.app(AJBridge);
 });
-
-// 作为独立全局项  
-AJBridge = KISSY.AJBridge
 /**
  * NOTES:
  * 2010/07/22 	完成基本代码
