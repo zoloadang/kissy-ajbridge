@@ -8,10 +8,8 @@
 
     <target name="concat">
         <concat destfile="uploader-pkg.js" encoding="${charset}" outputencoding="${charset}">
-            <path path="../ajbridge/ajbridge.js"/>
             <path path="uploader.js"/>
         </concat>
-        <copy file="uploader.swf" todir="${src.dir}"/>
     </target>
 
     <target name="clean">

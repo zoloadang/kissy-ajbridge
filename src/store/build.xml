@@ -8,10 +8,8 @@
 
     <target name="concat">
         <concat destfile="store-pkg.js" encoding="${charset}" outputencoding="${charset}">
-            <path path="../ajbridge/ajbridge.js"/>
             <path path="store.js"/>
         </concat>
-        <copy file="store.swf" todir="${src.dir}"/>
     </target>
 
     <target name="clean">

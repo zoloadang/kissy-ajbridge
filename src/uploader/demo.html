@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8"/>
-		<title>Uploader</title>
+		<title>Uploader Demo</title>
 		<style>
 			.sel {
 				height:21px;
@@ -70,9 +70,9 @@
 	<body>
 		<h2>Uploader Demo</h2>
 		
-		<script src="../../kissy/build/kissy.js"></script>
-		<script src="../../kissy/build/flash/flash-pkg.js"></script>
-		<script src="../../kissy-ajbridge/src/ajbridge/ajbridge.js"></script>
+		<script src="../../../kissy/build/kissy.js"></script>
+		<script src="../../../kissy/build/flash/flash-pkg.js"></script>
+		<script src="../ajbridge/ajbridge.js"></script>
 		<script src="uploader.js"></script>
 		
 		<div class="box">
@@ -110,7 +110,7 @@
 					trigger = S.get('#J_Trigger'),
 					container = S.get('#J_List'),
 					ul = D.get('ul', container),
-					serverURL ="http://127.0.0.1:8080/upload.php",
+					serverURL ="upload.php",
 					serverParams = {
 							username:"user",
 							password:"1297ew9jd23888s834u3j2u38"
