@@ -2,7 +2,7 @@
 <project name="kissy-ajbridge-build" default="build-all" xmlns:ac="antlib:net.sf.antcontrib">
     <description>KISSY AJBridge Build File</description>
 
-    <dirname property="current.dir" file="${ant.file.kissy-project-build}"/>
+    <dirname property="current.dir" file="${ant.file.kissy-ajbridge-build}"/>
 
     <property name="root.dir" location="${current.dir}/../"/>
     <property name="src.dir" location="${root.dir}/src"/>
