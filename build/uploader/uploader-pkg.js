@@ -1,7 +1,7 @@
 /*
 Copyright 2010, KISSY UI Library v1.1.5
 MIT Licensed
-build time: Oct 19 23:11
+build time: Oct 21 10:47
 */
 /**
  * @author kingfo  oicuicu@gmail.com
