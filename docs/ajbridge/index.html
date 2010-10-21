@@ -17,19 +17,24 @@
     <div class="col-main">
         <div class="main-wrap">
             <div class="section summary">
-				<dl>
-					<dt>本章节将假设您已了解以下内容：</dt>
-					<dd><a href="http://kissyteam.github.com/kissy/docs/flash/practice/references/embed-swf-onto-webpage.html">嵌入SWF的几种方式</a></dd>
-					<dd><a href="http://kissyteam.github.com/kissy/docs/flash/practice/references/flashplayer-parameters.html">Flash播放器参数</a></dd>
-					<dd><a href="http://kissyteam.github.com/kissy/docs/flash/practice/examples/publishing-static.html" target="_blank">动态发布方式</a></dd>
-					<dd><a href="http://kissyteam.github.com/kissy/docs/flash/practice/examples/publishing-static.html" target="_blank">静态发布方式</a></dd>
-					<dt>Requested:</dt>
-					<dd><a href="http://github.com/kissyteam/kissy/blob/master/build/packages/core.js">KISSY CORE</a></dd>
-					<dd><a href="http://github.com/kissyteam/kissy/blob/master/build/json/json-pkg.js" target="_blank">JSON package</a></dd>
-					<dd><a href="http://github.com/kissyteam/kissy/blob/master/build/flash/flash-pkg.js" target="_blank">Flash package</a></dd>
-					<dt>Editors:</dt>
-					<dd><a href="mailto:longzang@taobao.com">龙藏</a>,Taobao,Inc</p></dd>
-				</dl>
+                <p>本章节将假设您已了解以下内容：</p>
+                <ul>
+                    <li><a href="http://kissyteam.github.com/kissy/docs/flash/practice/references/embed-swf-onto-webpage.html">嵌入SWF的几种方式</a></li>
+                    <li><a href="http://kissyteam.github.com/kissy/docs/flash/practice/references/flashplayer-parameters.html">Flash播放器参数</a></li>
+                    <li><a href="http://kissyteam.github.com/kissy/docs/flash/practice/examples/publishing-static.html" target="_blank">动态发布方式</a></li>
+                    <li><a href="http://kissyteam.github.com/kissy/docs/flash/practice/examples/publishing-static.html" target="_blank">静态发布方式</a></li>
+                </ul>
+
+                <p>Requires:</p>
+                <ul>
+                    <li><a href="http://github.com/kissyteam/kissy/blob/master/build/packages/core.js">KISSY CORE</a></li>
+                    <li><a href="http://github.com/kissyteam/kissy/blob/master/build/flash/flash-pkg.js" target="_blank">Flash package</a></li>
+                </ul>
+
+                <p>Editors:</p>
+                <ul>
+                    <li><a href="mailto:longzang@taobao.com">龙藏</a>,Taobao,Inc</li>
+                </ul>
 			</div>
 
             <div class="section" id="static">
@@ -80,14 +85,14 @@
                         <code>void <em>augment</em>(C, methods)</code>
                     </h4>
                     <div class="detail">
-                    	<p>批量注册 SWF 以公开的方法。</p>
+                    	<p>批量注册 SWF 中公开的方法。</p>
                     	<p class="tips">是 AJBridge 扩展应用必用方法。</p>
 						<dl class="parameters">
                             <dt>Parameters:</dt>
 							<dd>
                                 <code class="param-name">C</code>
                                 <code class="param-type">&lt;Class&gt;</code>
-                               	需要向添加的 SWF 公开的方法 的 JS 类 。
+                               	需要向添加的 SWF 公开的方法 的 JS 类
                             </dd>
                             <dd>
                                 <code class="param-name">methods</code>
@@ -96,9 +101,9 @@
                             </dd>
                         </dl>
 <pre class="example-code"><code>
-// 注册 SWF 公开的 单个方法
+// 注册 SWF 公开的单个方法
 AJBridge.augment(AJBridge, 'activate');
-// 注册 SWF 公开的 多个方法
+// 注册 SWF 公开的多个方法
 AJBridge.augment(Store,
 		[
 			"getItem",
@@ -157,20 +162,21 @@ AJBridge.augment(Store,
 						<p class="notice">请将此函数放置至配置和监听函数之后。</p>
 						<p>以下为推荐格式:</p>
 <pre class="example-code"><code>
-var a,A = AJBridge.Example;
-// 1.初始化 id 和  config 此处略... 
-// 2.创建实例
-a = new A(id, config);
-// 3.对实例进行监听
-a.on("failed", function(ev) {
-            //TODO：
-        });
-a.on("error", function(ev) {
-            //TODO：
-        });
+// 1. 初始化 id 和 config 此处略...
+// 2. 创建实例
+var aj = new AJBridge(id, config);
+
+// 3. 对实例进行监听
+aj.on("failed", function(ev) {
+        //TODO：
+    });
+aj.on("error", function(ev) {
+        //TODO：
+    });
 //...
+
 // 4.初始化实例
-a.init(); 
+aj.init(); 
 </code></pre>
                     </div>
                 </div>

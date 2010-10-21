@@ -2,10 +2,10 @@
 <html>
 	<head>
 		<meta charset="utf-8"/>
-		<title></title>
+		<title>Store Test</title>
 	</head>
 	<body>
-		<h2>SWFStore test</h2>
+		<h2>AJBridge Store test</h2>
 		<script src="../../../kissy/build/test/test.js"></script>
 		<script>KISSY.Test.Config.times = 1;</script>
 		
@@ -22,7 +22,7 @@
 		
 		<div id="myFlashContent">
 			 <a href="http://www.adobe.com/go/getflashplayer"> 
-	         <img src="get_flash_player.gif" alt="Get Adobe Flash player" /> 
+	         <img src="../../assets/get_flash_player.gif" alt="Get Adobe Flash player" />
 	         </a> 
 		</div>
 		<br/>
@@ -62,7 +62,7 @@
 				KEY = "sample2",
 				VAL = "hello world~",
 				cK,cV;
-			
+			debugger
 				function test_create(test){
 					store.on("failed", function(ev) {
 			            test.fail();
@@ -158,7 +158,7 @@
 				cK = prompt("input key:");
 				if(cK&&cK.length>0){
 					cV = prompt("input value:");
-					if(!cV||cV.length<1)cV = "null"	
+					if(!cV||cV.length<1)cV = "null";
 					store.setItem(cK,cV);
 					t.echo("setItemByCustom now");
 				}
