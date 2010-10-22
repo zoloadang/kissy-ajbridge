@@ -329,7 +329,7 @@ package com.xintend.net.uploader {
 			fileID = pendingFiles[e.target];
 			switch(e.type) {
 				case ProgressEvent.PROGRESS:
-					event = new RichEvent(UPLOAD_PROGRESS, false, true, {bytesLoaded:e["bytesLoaded"],bytesTotal:["bytesTotal"]} );
+					event = new RichEvent(UPLOAD_PROGRESS, false, true, {bytesLoaded:e["bytesLoaded"],bytesTotal:e["bytesTotal"]} );
 				break;
 				case Event.COMPLETE:
 					removePendingFile(e.target as FileReference);
