@@ -104,22 +104,19 @@
 			AJBridge.ready();
 			
 			
+			hotspot = new Sprite();
+			hotspot.addEventListener(Event.RESIZE, hotspotResize);
+			hotspot.buttonMode = btn;
+			hotspotResize();
+			addChild(hotspot);
 			
 			
 			if (hand || btn) {
-				hotspot = new Sprite();
-				hotspot.addEventListener(Event.RESIZE, hotspotResize);
-				
-				hotspot.buttonMode = btn;
-				
-				hotspotResize();
 				useHand(hand);
 				setBtnMode(btn);
-				
-				addChild(hotspot);
 			}
 			
-			
+			hotspot.addEventListener(MouseEvent.CLICK, mouseHandler);
 			
 			uploader.init(defaultServerURL, defaultServerParameters, defaultServerResponse);
 		}
@@ -130,13 +127,11 @@
 		
 		private function setBtnMode(value:Boolean):void{
 			if (value) {
-				hotspot.addEventListener(MouseEvent.CLICK, mouseHandler);
 				hotspot.addEventListener(MouseEvent.MOUSE_OVER, mouseHandler);
 				hotspot.addEventListener(MouseEvent.MOUSE_DOWN, mouseHandler);
 				hotspot.addEventListener(MouseEvent.MOUSE_UP, mouseHandler);
 				hotspot.addEventListener(MouseEvent.MOUSE_OUT, mouseHandler);
 			}else {
-				hotspot.removeEventListener(MouseEvent.CLICK, mouseHandler);
 				hotspot.removeEventListener(MouseEvent.MOUSE_OVER, mouseHandler);
 				hotspot.removeEventListener(MouseEvent.MOUSE_DOWN, mouseHandler);
 				hotspot.removeEventListener(MouseEvent.MOUSE_UP, mouseHandler);
@@ -163,12 +158,12 @@
 		
 		
 		private function eventHandler(e: Event): void {
-			//switch(e.type) {
-				//case MouseEvent.CLICK:
-					//uploader.browse();
-				//break;
-			//}
-			//trace(e);
+			switch(e.type) {
+				case Uploader.FILE_SELECT:
+				case Uploader.BROWSE_CANCEL:
+					hotspot.addEventListener(MouseEvent.CLICK, mouseHandler);
+				break;
+			}
 			AJBridge.sendEvent(e);
 		}
 		
@@ -176,6 +171,7 @@
 			switch(e.type) {
 				case MouseEvent.CLICK:
 					uploader.browse();
+					hotspot.removeEventListener(MouseEvent.CLICK, mouseHandler);
 				break;
 			}
 			

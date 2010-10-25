@@ -128,7 +128,7 @@ package com.xintend.net.uploader {
 					return fileReference.browse(filters);
 				}
 			}catch (e: Error) {
-				dispatchEvent(new RichEvent(UPLOAD_ERROR, false, true, e.message));
+				dispatchEvent(new RichEvent(ErrorEvent.ERROR, false, true, e.message));
 			}
 			
 			
@@ -167,11 +167,11 @@ package com.xintend.net.uploader {
 			
 			try {
 				fileReference = pendingFiles[fileID];
-				if (!fileReference) dispatchEvent(new RichEvent(UPLOAD_ERROR, false, true, "no file"));
+				if (!fileReference) dispatchEvent(new RichEvent(ErrorEvent.ERROR, false, true, "no file"));
 				addNetListeners(fileReference,this.serverResponse);
 				fileReference.upload(request, uploadDataFieldName);
 			}catch (e: Error) {
-				dispatchEvent(new RichEvent(UPLOAD_ERROR, false, true, e.message));
+				dispatchEvent(new RichEvent(ErrorEvent.ERROR, false, true, e.message));
 			}
 			
 			return true;
@@ -208,7 +208,7 @@ package com.xintend.net.uploader {
 					fileReference.upload(request, uploadDataFieldName);
 				}
 			}catch (e: Error) {
-				dispatchEvent(new RichEvent(UPLOAD_ERROR, false, true, e.message));
+				dispatchEvent(new RichEvent(ErrorEvent.ERROR, false, true, e.message));
 			}
 			
 			return true;
